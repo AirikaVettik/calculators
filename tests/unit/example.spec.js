@@ -9,4 +9,16 @@ describe("HelloWorld.vue", () => {
     });
     expect(wrapper.text()).toMatch(msg);
   });
+
+  it("should add properly", () => {
+    const wrapper = shallowMount(HelloWorld, {});
+    const total = wrapper.vm.add(20, 5);
+    expect(total).toBe(25);
+  });
+
+  it("should multiply properly", () => {
+    const wrapper = shallowMount(HelloWorld, {});
+    const total = wrapper.vm.multiply(20, 5);
+    expect(total).toBe(100);
+  });
 });
