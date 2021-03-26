@@ -1,9 +1,9 @@
 <template>
   <div class="calculator">
-      <div class="display">0.2222</div>
-      <div class="btn">C</div>
-      <div class="btn">+/-</div>
-      <div class="btn">%</div>
+      <div class="display">{{current || '123' }}</div>
+      <div @click="clear" class="btn">C</div>
+      <div @click="sign" class="btn">+/-</div>
+      <div @click="percent" class="btn">%</div>
       <div class="btn operator">÷</div>
       <div class="btn">7</div>
       <div class="btn">8</div>
@@ -25,6 +25,24 @@
 
 <script>
 export default {
+    name: "calculator",
+    data () {
+        return {
+            current: '',
+        }
+    },
+    methods: {
+        clear() {
+            this.current = ''
+        },
+        sign() {
+            this.current = this.current.charAt(0) === '-' ?
+                this.current.slice(1) : `-${this.current}`   
+        },
+        percent() {
+            this.current = `${parseFloat(this.current) / 100}`
+        }
+    }
 
 }
 </script>
@@ -40,6 +58,7 @@ export default {
 }
 .display {
     grid-column: 1 / 5;
+    padding: 10px;
     background: rgba(186, 192, 191, 0.397);
 }
 .zero {
