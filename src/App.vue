@@ -1,11 +1,12 @@
 <template>
   <v-app>
-    
+      <div class="container">
+      <img width="20%" src="./assets/calculator.png">
       <NavBar />
       
         
 
-  
+    </div>
   </v-app>
 </template>
 
@@ -20,3 +21,10 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+  .container{
+    text-align: center;
+    background: rgb(247, 247, 247);
+  }
+</style>
