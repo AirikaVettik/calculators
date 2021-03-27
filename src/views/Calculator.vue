@@ -92,7 +92,7 @@ export default {
 
 <style>
 .calculator {
-    width: 400px;
+    width: 100%;
     margin: 0 auto;
     font-size: 40px;
     display: grid;
