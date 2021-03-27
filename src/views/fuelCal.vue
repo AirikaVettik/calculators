@@ -45,8 +45,8 @@
     </v-row>
     <br><br>
     <v-divider></v-divider>
-    <v-subheader class="font-weight-bold"> {{ distance }} km vahemaa läbimiseks kulub {{ spentFuel }} liitrit kütust.</v-subheader>
-    <v-subheader class="font-weight-bold">Kütuse maksumus on {{ fuelCost }} € </v-subheader>
+    <v-subheader class="font-weight-bold"> {{ distance || 100 }} km vahemaa läbimiseks kulub {{ spentFuel || 5 }} liitrit kütust.</v-subheader>
+    <v-subheader class="font-weight-bold">Kütuse maksumus on {{ fuelCost || 6.70 }} € </v-subheader>
   </v-container>
 </template>
 
