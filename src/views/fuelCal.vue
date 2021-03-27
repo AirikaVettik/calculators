@@ -8,10 +8,10 @@
       </v-col>
       <v-col cols="8">
         <v-text-field 
-        id="distance"
+        type="number"
           label="Teekonna pikkus"
-          value="100"
           suffix="km"
+          v-model="distance"
         ></v-text-field>
       </v-col>
     </v-row>
@@ -22,10 +22,10 @@
       </v-col>
       <v-col cols="8">
         <v-text-field
-        id="fuel"
+        type="number"
           label="Kütuse kulu"
-          value="5"
           suffix="l/100km"
+          v-model="fuel"
         ></v-text-field>
       </v-col>
     </v-row>
@@ -36,22 +36,41 @@
       </v-col>
       <v-col cols="8">
         <v-text-field
-        id="cost"
           label="Hind"
-          value="1.34"
           prefix="€"
-        ></v-text-field>
+          v-model="cost"
+        >
+        </v-text-field>
       </v-col>
     </v-row>
     <br><br>
     <v-divider></v-divider>
-    <v-subheader class="font-weight-bold">?? vahemaa läbimiseks kulub ?? liitrit kütust.</v-subheader>
-    <v-subheader class="font-weight-bold">Kütuse maksumus ??  </v-subheader>
+    <v-subheader class="font-weight-bold"> {{ distance }} km vahemaa läbimiseks kulub {{ spentFuel }} liitrit kütust.</v-subheader>
+    <v-subheader class="font-weight-bold">Kütuse maksumus on {{ fuelCost }} € </v-subheader>
   </v-container>
 </template>
+
 <script>
 export default {
+    name: "fuelcal",
+    data() {
+        return {
+            distance: '100',
+            fuel: '5',
+            cost: '1.34'
+        }
+    },
+    computed: {
+        spentFuel(){
+            return ((this.fuel / 100) * this.distance).toFixed(2);
+        },
 
+        fuelCost(){
+            return (this.spentFuel * this.cost).toFixed(2)
+        }
+
+    }
+    
 }
 </script>
 
