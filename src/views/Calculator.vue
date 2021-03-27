@@ -1,6 +1,6 @@
 <template>
   <div class="calculator">
-      <div class="display">{{current || '0' }}</div>
+      <div class="display">{{ current || '0' }}</div>
       <div @click="clear" class="btn">C</div>
       <div @click="sign" class="btn">+/-</div>
       <div @click="percent" class="btn">%</div>
