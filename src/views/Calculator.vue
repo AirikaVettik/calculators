@@ -25,7 +25,7 @@
 
 <script>
 export default {
-    name: "calculator",
+    name: "Calculator",
     data () {
         return {
             previous: null,
@@ -98,6 +98,7 @@ export default {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     grid-auto-rows: minmax(50px, auto);
+    cursor: pointer;
 }
 .display {
     grid-column: 1 / 5;

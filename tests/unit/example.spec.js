@@ -1,24 +1,27 @@
-import { shallowMount } from "@vue/test-utils";
-import HelloWorld from "@/components/HelloWorld.vue";
 
-describe("HelloWorld.vue", () => {
-  it("renders props.msg when passed", () => {
-    const msg = "new message";
-    const wrapper = shallowMount(HelloWorld, {
-      propsData: { msg }
-    });
-    expect(wrapper.text()).toMatch(msg);
-  });
+import { mount } from "@vue/test-utils";
+import Calculator from "@/views/Calculator.vue";
 
-  it("should add properly", () => {
-    const wrapper = shallowMount(HelloWorld, {});
-    const total = wrapper.vm.add(20, 5);
-    expect(total).toBe(25);
-  });
+describe("Calculator.vue", () => {
+  it("should divide properly", () => {
+    const wrapper = mount(Calculator);
 
-  it("should multiply properly", () => {
-    const wrapper = shallowMount(HelloWorld, {});
-    const total = wrapper.vm.multiply(20, 5);
-    expect(total).toBe(100);
-  });
-});
+    const btnSix = '.btn-6';
+    const btnDivide = '.btn-divide';
+    const btnTwo = '.btn-2';
+    const btnEquals = '.btn-equals';
+    const resultsExpected = 3;
+
+    wrapper.find(btnSix).trigger('click');
+    wrapper.find(btnDivide).trigger('click');
+    wrapper.find(btnTwo).trigger('click');
+    wrapper.find(btnEquals).trigger('click');
+
+    // Get result in data
+    const result = wrapper.vm.$data.results;
+
+    // Expected is 10, because 5 * 2 = 10
+    expect(result).toBe(resultsExpected)
+  })
+  })
+
