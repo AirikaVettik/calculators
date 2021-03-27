@@ -29,7 +29,9 @@ export default {
 <style scoped>
   .container{
     text-align: center;
+    align-content: center;
     background: rgb(247, 247, 247);
+    max-width: 500px;
   }
   .btn-to-top {
   width: 60px;
