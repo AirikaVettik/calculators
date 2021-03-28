@@ -4,16 +4,19 @@
       <router-link to="./"> <img width="30%" src="./assets/calculator.png"></router-link>
       <NavBar />
       <router-view />
-    <back-to-top bottom="50px" right="0px">
-      <button type="button" class="btn btn-info btn-to-top"><i class="fa fa-chevron-up"></i>Üles</button>
+    <back-to-top visibleoffset="100">
+      <img width="20%" align="right" src="./assets/arrow-up.png" alt="">
     </back-to-top>
+    <Footer />
     </div>
+
   </v-app>
 </template>
 
 <script>
 import NavBar from "./components/NavBar"
 import BackToTop from 'vue-backtotop'
+import Footer from "./components/Footer"
 
 
 export default {
@@ -22,6 +25,7 @@ export default {
   components: {
     NavBar,
     BackToTop,
+    Footer
   },
 };
 </script>
@@ -33,13 +37,4 @@ export default {
     background: rgb(247, 247, 247);
     max-width: 500px;
   }
-  .btn-to-top {
-  width: 60px;
-  height: 60px;
-  padding: 10px 16px;
-  border-radius: 50%;
-  font-size: 22px;
-  line-height: 22px;
-  
-}
 </style>
