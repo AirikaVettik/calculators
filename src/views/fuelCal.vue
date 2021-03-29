@@ -6,7 +6,7 @@
       <v-col cols="4">
         <v-subheader align="right">Läbitud teekonna pikkus </v-subheader>
       </v-col>
-      <v-col cols="8">
+      <v-col cols="6">
         <v-text-field 
         type="number"
           label="Teekonna pikkus"
@@ -20,7 +20,7 @@
       <v-col cols="4">
         <v-subheader align="right">Keskmine kütusekulu </v-subheader>
       </v-col>
-      <v-col cols="8">
+      <v-col cols="6">
         <v-text-field
         type="number"
           label="Kütuse kulu"
@@ -34,7 +34,7 @@
       <v-col cols="4">
         <v-subheader align="right">Kütuse liitri hind</v-subheader>
       </v-col>
-      <v-col cols="8">
+      <v-col cols="6">
         <v-text-field
           label="Hind"
           prefix="€"

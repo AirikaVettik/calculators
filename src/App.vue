@@ -17,6 +17,7 @@
 import NavBar from "./components/NavBar"
 import BackToTop from 'vue-backtotop'
 import Footer from "./components/Footer"
+import 'material-design-icons-iconfont/dist/material-design-icons.css'
 
 
 export default {
