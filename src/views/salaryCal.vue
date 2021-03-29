@@ -69,17 +69,20 @@
           >
         </v-col>
         <v-alert :value="alert2" color="green" dark border="top" align="left">
-          Eesti residendist füüsilise isiku maksustamisperioodi tulust maha
-          arvatav maksuvaba tulu. <br />
+          Töötuskindlustusmakse määrad sätestatakse töötuskindlustuse seaduse §
+          41 lõike 4 alusel Vabariigi Valitsuse määrusega. <br />
+          <li>Tööandja töötuskindlustusmakse määr 2018–2021. aastal on 0,8%</li>
           <li>
-            Aastatuluga kuni 14 400 eurot on maksuvaba tulu 6000 eurot aastas.
+            Töötaja (kindlustatu) töötuskindlustusmakse määr 2018–2021. aastal
+            on 1,6%
           </li>
           <li>
-            Aastatulu kasvades 14 400 eurolt 25 200 euroni väheneb maksuvaba
-            tulu vastavalt valemile 6000 – 6000 ÷ 10 800 × (tulu summa – 14
-            400).
+            Töötuskindlustuse seaduse kohaselt on antud makse maksjateks s.h.
+            töötaja, avalik teenistuja, võlaõigusliku lepingu alusel teenust
+            osutav füüsiline isik. Töötaja ja tööandja makse määrad järgmiseks
+            kalendriaastaks kehtestab Vabariigi Valitsus hiljemalt jooksva
+            kalendriaasta 1. detsembriks.
           </li>
-          <li>Aastatuluga üle 25 200 euro on maksuvaba tulu 0</li>
         </v-alert>
 
         <v-col cols="10">
@@ -89,24 +92,6 @@
             color="success"
           ></v-checkbox>
         </v-col>
-        <v-col cols="2">
-          <v-btn fab icon color="green" align="left" @click="alert3 = !alert3"
-            ><v-icon>info</v-icon></v-btn
-          >
-        </v-col>
-        <v-alert :value="alert3" color="green" dark border="top" align="left">
-          Eesti residendist füüsilise isiku maksustamisperioodi tulust maha
-          arvatav maksuvaba tulu. <br />
-          <li>
-            Aastatuluga kuni 14 400 eurot on maksuvaba tulu 6000 eurot aastas.
-          </li>
-          <li>
-            Aastatulu kasvades 14 400 eurolt 25 200 euroni väheneb maksuvaba
-            tulu vastavalt valemile 6000 – 6000 ÷ 10 800 × (tulu summa – 14
-            400).
-          </li>
-          <li>Aastatuluga üle 25 200 euro on maksuvaba tulu 0</li>
-        </v-alert>
 
         <v-col cols="10">
           <v-checkbox
@@ -121,23 +106,38 @@
           >
         </v-col>
         <v-alert :value="alert4" color="green" dark border="top" align="left">
-          Eesti residendist füüsilise isiku maksustamisperioodi tulust maha
-          arvatav maksuvaba tulu. <br />
+          Makset on kohustatud tasuma kogumispensioni II sambaga vabatahtlikult
+          liitunud või seadusega kohustatud residendist füüsiline isik (kes on
+          esitanud maksete jätkamise avalduse), kui tema elukoht on Eestis või
+          kui ta viibib Eestis 12 järjestikuse kalendrikuu jooksul vähemalt 183
+          päeva. Makse määraks on 2% kogumispensionide seaduse § 7 lõikes 1
+          nimetatud summadelt. <br />
           <li>
-            Aastatuluga kuni 14 400 eurot on maksuvaba tulu 6000 eurot aastas.
+            01. juulist 2020. a kuni 31. augustini 2021. a on teise sambasse
+            sotsiaalmaksu arvelt tehtavad 4% sissemaksed peatatud.
           </li>
           <li>
-            Aastatulu kasvades 14 400 eurolt 25 200 euroni väheneb maksuvaba
-            tulu vastavalt valemile 6000 – 6000 ÷ 10 800 × (tulu summa – 14
-            400).
+            2020. aasta oktoobrikuu jooksul sai esitada sissemaksete ajutise
+            katkestamise avaldust, millega peatatakse palgalt 2% kogumispensioni
+            makse tasumine 1. detsembrist 2020. aastal kuni 31. augustini 2021.
+            aastal. Eesti residendist füüsilise isiku maksustamisperioodi tulust
+            maha arvatav maksuvaba tulu.
           </li>
-          <li>Aastatuluga üle 25 200 euro on maksuvaba tulu 0</li>
         </v-alert>
       </v-row>
     </v-card>
     <br /><br />
     <v-btn @click="calculate"> Arvuta </v-btn>
-    <br /><br />
+    <br />
+        <v-card>
+      <v-card-title class="orange lighten-1">
+        <span class="headline white--text">Graafiliselt</span>
+        <v-spacer></v-spacer>
+        <pie-chart :value1="value1" :value2="value2" />
+      </v-card-title>
+    </v-card>
+    <br />
+
     <v-card>
       <v-card-title class="orange lighten-1" text="1 rem">
         <span class="headline white--text">Palgafond</span>
@@ -155,14 +155,20 @@
         </v-data-table>
       </v-col>
     </v-card>
+    <br />
   </v-container>
 </template>
 
 <script>
+import pieChart from "./../components/pieChart";
+
 export default {
   name: "salaryCal",
   data() {
     return {
+      components: {
+        pieChart
+      },
       selected: "",
       checked: ["Tööandjakulu", "Brutopalk", "Netopalk"],
       salaryType: null,
@@ -175,6 +181,8 @@ export default {
       alert2: false,
       alert3: false,
       alert4: false,
+      value1: 0,
+      value2: 0,
       headers: [
         { text: "", value: "name" },
         { text: "€", value: "eur" },
@@ -236,6 +244,9 @@ export default {
         const totalCost = this.salary + socialTax + unemploymentEmployer;
         const netSalary =
           this.salary - fundedPension - unemploymentEmployee - incomeTax;
+
+        this.value1 = (netSalary * 100) / totalCost;
+        this.value2 = ((totalCost - netSalary) * 100) / totalCost;
 
         this.results = [
           {
