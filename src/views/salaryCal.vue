@@ -129,7 +129,7 @@
     <br /><br />
     <v-btn @click="calculate"> Arvuta </v-btn>
     <br />
-        <v-card>
+    <v-card>
       <v-card-title class="orange lighten-1">
         <span class="headline white--text">Graafiliselt</span>
         <v-spacer></v-spacer>
@@ -166,8 +166,10 @@ export default {
   name: "salaryCal",
   data() {
     return {
+      value1: 0,
+      value2: 0,
       components: {
-        pieChart
+        pieChart,
       },
       selected: "",
       checked: ["Tööandjakulu", "Brutopalk", "Netopalk"],
@@ -181,8 +183,6 @@ export default {
       alert2: false,
       alert3: false,
       alert4: false,
-      value1: 0,
-      value2: 0,
       headers: [
         { text: "", value: "name" },
         { text: "€", value: "eur" },
