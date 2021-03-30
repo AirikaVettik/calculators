@@ -1,17 +1,17 @@
 <template>
-  <figure class="pie-chart" :style="pieChartStats">
+  <figure class="piechart" :style="pieChartStats">
     <figcaption>
-      Netopalk<span style="color: #4e79a7"></span><br />Kõik maksud kokku<span
+      <span style="color: #4e79a7"></span><br /><span
         style="color: #f28e2c"
       ></span>
     </figcaption>
-    <cite> Palga kalkulaator</cite>
+    <cite></cite>
   </figure>
 </template>
 <script>
 
 export default {
-  name: "pie-chart",
+  name: "piechart",
   props: {
     value1: {
       type: Number,
@@ -34,10 +34,8 @@ export default {
 <style scoped>
 .pie-chart {
   position: relative;
-  width: 350px;
   max-width: 100%;
-  min-height: 350px;
-  margin: 20px 0;
+  margin: 0;
   outline: 1px solid #ccc;
 }
 .pie-chart h2 {
@@ -55,8 +53,7 @@ export default {
   position: absolute;
   bottom: 1em;
   right: 1em;
-  font-size: smaller;
-  text-align: right;
+  
 }
 .pie-chart span:after {
   display: inline-block;

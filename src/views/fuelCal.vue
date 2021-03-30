@@ -4,7 +4,7 @@
       <v-col cols="4">
         <v-subheader align="right">Läbitud teekonna pikkus </v-subheader>
       </v-col>
-      <v-col cols="6">
+      <v-col cols="8">
         <v-text-field
           type="number"
           label="Teekonna pikkus"
@@ -18,7 +18,7 @@
       <v-col cols="4">
         <v-subheader align="right">Keskmine kütusekulu </v-subheader>
       </v-col>
-      <v-col cols="6">
+      <v-col cols="8">
         <v-text-field
           type="number"
           label="Kütuse kulu"
@@ -32,7 +32,7 @@
       <v-col cols="4">
         <v-subheader align="right">Kütuse liitri hind</v-subheader>
       </v-col>
-      <v-col cols="6">
+      <v-col cols="8">
         <v-text-field label="Hind" prefix="€" v-model="cost"> </v-text-field>
       </v-col>
     </v-row>
@@ -55,7 +55,7 @@ export default {
     return {
       distance: "100",
       fuel: "5",
-      cost: "1.34",
+      cost: "1.34"
     };
   },
   computed: {
@@ -65,8 +65,8 @@ export default {
 
     fuelCost() {
       return (this.spentFuel * this.cost).toFixed(2);
-    },
-  },
+    }
+  }
 };
 </script>
 

@@ -1,23 +1,17 @@
 <template>
   <v-footer padless>
-    <v-col
-      class="text-center"
-      cols="12"
-    >
+    <v-col class="text-center" cols="12">
       {{ new Date().getFullYear() }} — Airika Vettik
     </v-col>
   </v-footer>
 </template>
 
 <script>
-export default {
-
-}
+export default {};
 </script>
 
-<style>
+<style scoped>
 footer {
- margin-top: 40px;
+  margin-top: 40px;
 }
-
 </style>
