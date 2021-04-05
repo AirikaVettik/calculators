@@ -182,7 +182,7 @@ import { mapState } from "vuex";
 export default {
   name: "salaryCal",
   components: {
-    pieChart,
+    pieChart
   },
   data() {
     return {
@@ -391,17 +391,17 @@ export default {
     },
   },
   computed: mapState({
-    fuel: state => state.fuel,
-    distance: state => state.distance,
-    cost: state => state.cost,
+    fuel: (state) => state.fuel,
+    distance: (state) => state.distance,
+    cost: (state) => state.cost,
 
     spentFuel() {
       return ((this.fuel / 100) * this.distance).toFixed(2);
     },
     fuelCost() {
       return (this.spentFuel * this.cost).toFixed(2);
-    }
-  })
+    },
+  }),
 };
 </script>
 
