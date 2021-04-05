@@ -33,17 +33,22 @@
         <v-subheader align="right">Kütuse liitri hind</v-subheader>
       </v-col>
       <v-col cols="8">
-        <v-text-field label="Hind" prefix="€" v-model="cost"> </v-text-field>
+        <v-text-field
+          type="number"
+          label="Hind"
+          prefix="€"
+          v-model="cost"
+        ></v-text-field>
       </v-col>
     </v-row>
     <br /><br />
     <v-divider></v-divider>
     <v-subheader align="left" class="font-weight-bold">
-      {{ distance || 100 }} km vahemaa läbimiseks kulub
-      {{ spentFuel || 5 }} liitrit kütust.</v-subheader
+      {{ distance }} km vahemaa läbimiseks kulub {{ spentFuel }} liitrit
+      kütust.</v-subheader
     >
     <v-subheader align="left" class="font-weight-bold"
-      >Kütuse maksumus on {{ fuelCost || 6.7 }} €
+      >Kütuse maksumus on {{ fuelCost }} €
     </v-subheader>
   </v-container>
 </template>
@@ -52,21 +57,16 @@
 export default {
   name: "fuelcal",
   data() {
-    return {
-      distance: "100",
-      fuel: "5",
-      cost: "1.34"
-    };
+    return this.$store.state;
   },
   computed: {
     spentFuel() {
       return ((this.fuel / 100) * this.distance).toFixed(2);
     },
-
     fuelCost() {
       return (this.spentFuel * this.cost).toFixed(2);
-    }
-  }
+    },
+  },
 };
 </script>
 

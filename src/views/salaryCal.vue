@@ -2,6 +2,20 @@
   <v-container>
     <v-card>
       <v-card-title class="orange lighten-1">
+        <span class="headline white--text">Viimane kütusekulu arvutus</span>
+        <v-spacer></v-spacer>
+      </v-card-title>
+      <v-subheader align="left" class="font-weight-bold">
+        {{ $store.state.distance }} km vahemaa läbimiseks kulub
+        {{ spentFuel }} liitrit kütust.</v-subheader
+      >
+      <v-subheader align="left" class="font-weight-bold"
+        >Kütuse maksumus on {{ fuelCost }} €
+      </v-subheader>
+    </v-card>
+    <br />
+    <v-card>
+      <v-card-title class="orange lighten-1">
         <span class="headline white--text">Lähteandmed</span>
         <v-spacer></v-spacer>
       </v-card-title>
@@ -134,7 +148,7 @@
         <span class="headline white--text">Graafiliselt</span>
         <v-spacer></v-spacer>
         <v-col cols="12">
-        <pie-chart :value1="value1" :value2="value2" />
+          <pie-chart :value1="value1" :value2="value2" />
         </v-col>
       </v-card-title>
     </v-card>
@@ -163,11 +177,12 @@
 
 <script>
 import pieChart from "./../components/pieChart.vue";
+import { mapState } from "vuex";
 
 export default {
   name: "salaryCal",
   components: {
-    pieChart
+    pieChart,
   },
   data() {
     return {
@@ -187,42 +202,42 @@ export default {
       alert4: false,
       headers: [
         { text: "", value: "name" },
-        { text: "€", value: "eur" }
+        { text: "€", value: "eur" },
       ],
       results: [
         {
           name: "Tööandja kulu kokku (palgafond):",
-          eur: 0
+          eur: 0,
         },
         {
           name: "Sotsiaalmaks:",
-          eur: 0
+          eur: 0,
         },
         {
           name: "Töötuskindlustusmakse (tööandja):",
-          eur: 0
+          eur: 0,
         },
         {
           name: "Brutopalk:",
-          eur: 0
+          eur: 0,
         },
         {
           name: "Kogumispension (II sammas):",
-          eur: 0
+          eur: 0,
         },
         {
           name: "Töötuskindlustusmakse (töötaja):",
-          eur: 0
+          eur: 0,
         },
         {
           name: "Tulumaks:",
-          eur: 0
+          eur: 0,
         },
         {
           name: "Netopalk:",
-          eur: 0
-        }
-      ]
+          eur: 0,
+        },
+      ],
     };
   },
   methods: {
@@ -245,36 +260,36 @@ export default {
         this.results = [
           {
             name: "Tööandja kulu kokku (palgafond):",
-            eur: totalCost.toFixed(2)
+            eur: totalCost.toFixed(2),
           },
           {
             name: "Sotsiaalmaks:",
-            eur: socialTax.toFixed(2)
+            eur: socialTax.toFixed(2),
           },
           {
             name: "Töötuskindlustusmakse (tööandja):",
-            eur: unemploymentEmployer.toFixed(2)
+            eur: unemploymentEmployer.toFixed(2),
           },
           {
             name: "Brutopalk:",
-            eur: this.salary.toFixed(2)
+            eur: this.salary.toFixed(2),
           },
           {
             name: "Kogumispension (II sammas):",
-            eur: fundedPension.toFixed(2)
+            eur: fundedPension.toFixed(2),
           },
           {
             name: "Töötuskindlustusmakse (töötaja):",
-            eur: unemploymentEmployee.toFixed(2)
+            eur: unemploymentEmployee.toFixed(2),
           },
           {
             name: "Tulumaks:",
-            eur: incomeTax.toFixed(2)
+            eur: incomeTax.toFixed(2),
           },
           {
             name: "Netopalk:",
-            eur: netSalary.toFixed(2)
-          }
+            eur: netSalary.toFixed(2),
+          },
         ];
       }
       if (this.salaryType === "Netopalk") {
@@ -294,36 +309,36 @@ export default {
         this.results = [
           {
             name: "Tööandja kulu kokku (palgafond):",
-            eur: totalCost.toFixed(2)
+            eur: totalCost.toFixed(2),
           },
           {
             name: "Sotsiaalmaks:",
-            eur: socialTax.toFixed(2)
+            eur: socialTax.toFixed(2),
           },
           {
             name: "Töötuskindlustusmakse (tööandja):",
-            eur: unemploymentEmployer.toFixed(2)
+            eur: unemploymentEmployer.toFixed(2),
           },
           {
             name: "Brutopalk:",
-            eur: grossSalary.toFixed(2)
+            eur: grossSalary.toFixed(2),
           },
           {
             name: "Kogumispension (II sammas):",
-            eur: fundedPension.toFixed(2)
+            eur: fundedPension.toFixed(2),
           },
           {
             name: "Töötuskindlustusmakse (töötaja):",
-            eur: unemploymentEmployee.toFixed(2)
+            eur: unemploymentEmployee.toFixed(2),
           },
           {
             name: "Tulumaks:",
-            eur: incomeTax.toFixed(2)
+            eur: incomeTax.toFixed(2),
           },
           {
             name: "Netopalk:",
-            eur: this.salary.toFixed(2)
-          }
+            eur: this.salary.toFixed(2),
+          },
         ];
       }
       if (this.salaryType === "Tööandjakulu") {
@@ -341,40 +356,52 @@ export default {
         this.results = [
           {
             name: "Tööandja kulu kokku (palgafond):",
-            eur: this.salary.toFixed(2)
+            eur: this.salary.toFixed(2),
           },
           {
             name: "Sotsiaalmaks:",
-            eur: socialTax.toFixed(2)
+            eur: socialTax.toFixed(2),
           },
           {
             name: "Töötuskindlustusmakse (tööandja):",
-            eur: unemploymentEmployer.toFixed(2)
+            eur: unemploymentEmployer.toFixed(2),
           },
           {
             name: "Brutopalk:",
-            eur: grossSalary.toFixed(2)
+            eur: grossSalary.toFixed(2),
           },
           {
             name: "Kogumispension (II sammas):",
-            eur: fundedPension.toFixed(2)
+            eur: fundedPension.toFixed(2),
           },
           {
             name: "Töötuskindlustusmakse (töötaja):",
-            eur: unemploymentEmployee.toFixed(2)
+            eur: unemploymentEmployee.toFixed(2),
           },
           {
             name: "Tulumaks:",
-            eur: incomeTax.toFixed(2)
+            eur: incomeTax.toFixed(2),
           },
           {
             name: "Netopalk:",
-            eur: netSalary.toFixed(2)
-          }
+            eur: netSalary.toFixed(2),
+          },
         ];
       }
+    },
+  },
+  computed: mapState({
+    fuel: state => state.fuel,
+    distance: state => state.distance,
+    cost: state => state.cost,
+
+    spentFuel() {
+      return ((this.fuel / 100) * this.distance).toFixed(2);
+    },
+    fuelCost() {
+      return (this.spentFuel * this.cost).toFixed(2);
     }
-  }
+  })
 };
 </script>
 
